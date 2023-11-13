@@ -1,4 +1,4 @@
-package com.example.androidmaster
+package com.example.androidmaster.ejercicios
 
 fun main() {
     var name:String? = "Alexis"
