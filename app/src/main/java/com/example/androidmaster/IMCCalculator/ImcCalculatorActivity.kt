@@ -3,20 +3,23 @@ package com.example.androidmaster.IMCCalculator
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.example.androidmaster.R
+import com.google.android.material.slider.RangeSlider
+import java.text.DecimalFormat
 
 class ImcCalculatorActivity : AppCompatActivity() {
 
     private var isMaleSelected : Boolean = true
     private var isFemaleSelected : Boolean = false
 
-    private var verificadorMale = 0
-
-
     private lateinit var viewMale : CardView
     private lateinit var viewFemale : CardView
+    private lateinit var tvHeight: TextView
+    private lateinit var rsHeight: RangeSlider
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_imc_calculator)
@@ -30,6 +33,9 @@ class ImcCalculatorActivity : AppCompatActivity() {
     private fun initComponents() {
         viewFemale = findViewById(R.id.viewFemale)
         viewMale = findViewById(R.id.viewMale)
+        tvHeight = findViewById(R.id.tvHeight)
+        rsHeight = findViewById(R.id.rsHeight)
+
     }
     private fun initListeners() {
         viewMale.setOnClickListener {
@@ -38,6 +44,13 @@ class ImcCalculatorActivity : AppCompatActivity() {
         viewFemale.setOnClickListener {
             changeGender()
             setGenderColor() }
+
+        rsHeight.addOnChangeListener { _, value, _ ->
+            val df = DecimalFormat("#.##")
+            val result = df.format(value)
+
+            tvHeight.text = "$result cm"
+        }
     }
 
     private fun changeGender() {
