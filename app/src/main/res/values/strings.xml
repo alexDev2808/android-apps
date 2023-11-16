@@ -22,5 +22,7 @@
 
     <string name="title_obesidad">Obesidad</string>
     <string name="description_obesidad">Atencion. Deberias consultar a un medico para tratar este padecimiento.</string>
+    <string name="todo_title">Bienvenido, Alexis</string>
+    <string name="todo_categories">Categorias:</string>
 
 </resources>
