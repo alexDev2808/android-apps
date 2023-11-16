@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.example.androidmaster.IMCCalculator.ImcCalculatorActivity.Companion.IMC_KEY
 import com.example.androidmaster.R
@@ -14,7 +15,7 @@ class ResultIMCActivity : AppCompatActivity() {
     private lateinit var tvResult: TextView
     private lateinit var tvIMC: TextView
     private lateinit var tvDescription: TextView
-    private lateinit var btnRecalculate: Button
+    private lateinit var btnRecalculate: AppCompatButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +31,7 @@ class ResultIMCActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
-//        btnRecalculate.setOnClickListener { onBackPressed() }
+        btnRecalculate.setOnClickListener { onBackPressed() }
     }
 
     private fun initUI(result: Double) {
@@ -73,5 +74,6 @@ class ResultIMCActivity : AppCompatActivity() {
         tvResult = findViewById(R.id.tvResult)
         tvIMC = findViewById(R.id.tvIMC)
         tvDescription = findViewById(R.id.tvDescription)
+        btnRecalculate = findViewById(R.id.btnRecalculate)
     }
 }
