@@ -1,6 +1,7 @@
 package com.example.androidmaster.IMCCalculator
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -33,6 +34,9 @@ class ImcCalculatorActivity : AppCompatActivity() {
     private lateinit var fabSubstractionAge: FloatingActionButton
     private lateinit var btnCalculate: Button
 
+    companion object {
+        const val IMC_KEY = "IMC_RESULT"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_imc_calculator)
@@ -98,14 +102,23 @@ class ImcCalculatorActivity : AppCompatActivity() {
         }
 
         btnCalculate.setOnClickListener {
-            calculateIMC()
+            val result = calculateIMC()
+
+            navigateToResult(result)
         }
     }
 
-    private fun calculateIMC() {
+    private fun navigateToResult(result: Double) {
+        val intent = Intent(this, ResultIMCActivity::class.java)
+        intent.putExtra(IMC_KEY, result)
+
+        startActivity(intent)
+    }
+
+    private fun calculateIMC(): Double {
         val df = DecimalFormat("#.##")
-        val imc = df.format(currentWeight / ( currentHeight.toDouble() / 100 * currentHeight.toDouble() / 100))
-        Log.i("prueba", "El imc es $imc")
+        return df.format(currentWeight / ( currentHeight.toDouble() / 100 * currentHeight.toDouble() / 100)).toDouble()
+
     }
     private fun setCurrentWeight() {
         tvWeight.text = currentWeight.toString()
